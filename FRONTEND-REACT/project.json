@@ -1,0 +1,57 @@
+[{
+    "name": "proyecto 1",
+    "slogan": "slogan",
+    "desc": "descripción",
+    "technologies": "HTML-CSS-REACT",
+    "demo": "https://google.es/",
+    "repo": "https://github.com/",
+    "author": "Ivanico",
+    "job": "Profe",
+    "photo": "",
+    "image": ""
+
+
+},
+{
+    "name": "proyecto 2",
+    "slogan": "slogan 2",
+    "desc": "descripción",
+    "technologies": "HTML-CSS-REACT",
+    "demo": "https://google.es/",
+    "repo": "https://github.com/",
+    "author": "Ivanico",
+    "job": "Profe",
+    "photo": "",
+    "image": ""
+
+
+},
+{
+    "name": "proyecto 3",
+    "slogan": "slogan 3",
+    "desc": "descripción",
+    "technologies": "HTML-CSS-REACT",
+    "demo": "https://google.es/",
+    "repo": "https://github.com/",
+    "author": "Ivanico",
+    "job": "Profe",
+    "photo": "",
+    "image": ""
+
+
+},
+{
+    "name": "proyecto 4",
+    "slogan": "slogan 4",
+    "desc": "descripción",
+    "technologies": "HTML-CSS-REACT",
+    "demo": "https://google.es/",
+    "repo": "https://github.com/",
+    "author": "Ivanico",
+    "job": "Profe",
+    "photo": "",
+    "image": ""
+
+
+}
+]
