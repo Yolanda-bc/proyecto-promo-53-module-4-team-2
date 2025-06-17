@@ -45,8 +45,7 @@ function Create() {
     });
   };
 
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
+  const handleSubmit = () => {
     console.log("Llamando al handleSubmit de mamá!");
 
     fetch("https://dev.adalab.es/api/projectCard", {

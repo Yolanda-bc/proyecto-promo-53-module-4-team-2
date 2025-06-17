@@ -1,4 +1,5 @@
 import GetAvatar from "../Pages/GetAvatar";
+import { NavLink } from "react-router";
 
 function Form(props) {
   const handleInput = (ev) => {
@@ -115,9 +116,14 @@ function Form(props) {
             Subir foto de la autora
             <input className="addForm__hidden" type="file" />
           </label>*/}
-          <button onClick={props.handleSubmit} className="button--large">
+
+          <NavLink
+            onClick={props.handleSubmit}
+            className="button--large"
+            to="/DetailPages"
+          >
             Guardar proyecto
-          </button>
+          </NavLink>
         </fieldset>
       </form>
     </>
