@@ -63,7 +63,7 @@ function Create() {
     localStorage.setItem("data", JSON.stringify(data));
   }, [data]);
   return (
-    <>
+    <div className="main_create">
       {" "}
       {/* <Hero /> */}
       <Card
@@ -85,7 +85,7 @@ function Create() {
         updateImage={updateImage}
         updatePhoto={updatePhoto}
       />
-    </>
+    </div>
   );
 }
 

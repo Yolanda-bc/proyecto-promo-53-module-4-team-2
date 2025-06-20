@@ -5,7 +5,7 @@ function Landing() {
     <>
       {" "}
       <Hero />
-      <ul>
+      <ul className="landing_card">
         <li>
           <PreviewCard
             name="proyecto 1"

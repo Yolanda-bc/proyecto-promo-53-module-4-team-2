@@ -1,5 +1,4 @@
 import "../styles/App.scss";
-
 import Footer from "./Layout/Footer";
 import Header from "./Layout/Header";
 import { Route, Routes, Link } from "react-router";
