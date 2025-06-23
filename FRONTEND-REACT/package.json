@@ -1,17 +1,20 @@
 {
-  "name": "react-starter-kit",
+  "name": "proyectos-molones",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "./",
+  "homepage": "http://./",
   "scripts": {
-    "dev": "vite",
+    "dev": "node --watch src/index.js",
     "build": "vite build",
     "deploy": "rm -rf docs; npm run build ; mv dist docs; git add docs; git commit -m 'Update GH PAges'; git push",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node src/index.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
     "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -30,5 +33,22 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
     "vite": "^6.3.5"
-  }
+  },
+  "description": "app para subir tus proyectos",
+  "main": "src/index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "proyecto-promo-53-module-4-team-2"
+  },
+  "keywords": [
+    "REACT",
+    "SCSS",
+    "HTML"
+  ],
+  "author": "team-2",
+  "license": "ISC"
 }
