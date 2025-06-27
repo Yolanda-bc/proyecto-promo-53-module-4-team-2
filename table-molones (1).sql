@@ -1,8 +1,8 @@
-
-USE `proyecto-molones`;
+CREATE DATABASE  IF NOT EXISTS "molones" /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `molones`;
 -- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: adulaba-yoli-adalab-yoli.g.aivencloud.com    Database: proyecto-molones
+-- Host: adulaba-yoli-adalab-yoli.g.aivencloud.com    Database: molones
 -- ------------------------------------------------------
 -- Server version	8.0.35
 
@@ -23,7 +23,7 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '5d6cdbc5-4b67-11f0-82ae-862ccfb01228:1-42';
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '5d6cdbc5-4b67-11f0-82ae-862ccfb01228:1-54';
 
 --
 -- Table structure for table `data_author`
@@ -36,7 +36,7 @@ CREATE TABLE `data_author` (
   `id` int NOT NULL AUTO_INCREMENT,
   `author` varchar(45) NOT NULL,
   `job` varchar(45) NOT NULL,
-  `image` longtext,
+  `image` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -58,18 +58,15 @@ DROP TABLE IF EXISTS `data_project`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `data_project` (
-  `id_data_project` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  `slogan` varchar(100) DEFAULT NULL,
-  `tecnologies` varchar(100) NOT NULL,
-  `repo` varchar(1000) NOT NULL,
-  `demo` varchar(100) NOT NULL,
-  `desc` varchar(1000) NOT NULL,
-  `photo` binary(200) DEFAULT NULL,
-  PRIMARY KEY (`id_data_project`),
-  UNIQUE KEY `name_UNIQUE` (`name`),
-  UNIQUE KEY `demo_UNIQUE` (`demo`),
-  UNIQUE KEY `slogan_UNIQUE` (`slogan`)
+  `slogan` varchar(45) NOT NULL,
+  `technologies` varchar(45) NOT NULL,
+  `repo` longtext NOT NULL,
+  `demo` longtext NOT NULL,
+  `desc` longtext NOT NULL,
+  `photo` varchar(1000) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,4 +89,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-23 13:28:48
+-- Dump completed on 2025-06-27 11:21:45
