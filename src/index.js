@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const mysql = require("mysql2/promise");
 
 // Creamos una vari con el servidor
 const server = express();
@@ -38,8 +39,23 @@ server.get("/", (req, res) => {
 
 // ENDPOINTS DE APIS
 
-server.get("/api/projects", (req, res) => {
-  res.json([
+server.get("/api/projects", async (req, res) => {
+  // 1.conectarnos a la B.Datos
+  const conn = await getConnection();
+
+  // 2.Lanzamo un Select y recuperamos los datos cm JSON
+  const [result] = await conn.query(`
+    SELECT * FROM molones
+    JOIN tabla auto ON (molones.id = tabla autor. fk_proyect);`);
+
+  // 3. cerramos la conexión
+  await conn.end();
+
+  // 4. Devolvemos en la respuesta(res) el Json
+  res.json(result);
+
+  // select * FROM
+  /* res.json([
     {
       name: "proyecto 1",
       slogan: "slogan",
@@ -77,7 +93,7 @@ server.get("/api/projects", (req, res) => {
       image: "",
     },
     {
-      name: "proyecto 4",
+      name: "proyecto 5",
       slogan: "slogan 4",
       desc: "descripción",
       technologies: "HTML-CSS-REACT",
@@ -88,7 +104,7 @@ server.get("/api/projects", (req, res) => {
       photo: "",
       image: "",
     },
-  ]);
+  ]); */
 });
 
 server.post("/api/projects", (req, res) => {
