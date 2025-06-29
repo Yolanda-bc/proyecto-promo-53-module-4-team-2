@@ -30,88 +30,59 @@ async function getConnection() {
   return conexion;
 }
 
-// EJEMPLO DE ENDPOINT
-
-server.get("/", (req, res) => {
-  console.log("Holis"); // -> Se ve en la terminal
-
-  res.send("Holis Adalabers!!!"); // -> Se ve en la página
-});
-
 // ENDPOINTS DE APIS
 
 server.get("/api/projects", async (req, res) => {
-  // 1.conectarnos a la B.Datos
   const conn = await getConnection();
+  const projectId = req.query.id;
+  let response = [];
+  if (req.query.id) {
+    [response] = await conn.query(`
+     SELECT * FROM molones.data_author
+  JOIN molones.data_project ON (molones.data_author.data_project_id = molones.data_project.id) WHERE molones.data_project.id = ${projectId};`);
+  } else {
+    [response] = await conn.query(`
+     SELECT * FROM molones.data_author
+  JOIN molones.data_project ON (molones.data_author.data_project_id = molones.data_project.id);`);
+  }
 
-  // 2.Lanzamo un Select y recuperamos los datos cm JSON
-  const [result] = await conn.query(`
-    SELECT * FROM molones
-    JOIN tabla auto ON (molones.id = tabla autor. fk_proyect);`);
-
-  // 3. cerramos la conexión
   await conn.end();
 
-  // 4. Devolvemos en la respuesta(res) el Json
-  res.json(result);
-
-  // select * FROM
-  /* res.json([
-    {
-      name: "proyecto 1",
-      slogan: "slogan",
-      desc: "descripción",
-      technologies: "HTML-CSS-REACT",
-      demo: "https://google.es/",
-      repo: "https://github.com/",
-      author: "Ivanico",
-      job: "Profe",
-      photo: "",
-      image: "",
-    },
-    {
-      name: "proyecto 2",
-      slogan: "slogan 2",
-      desc: "descripción",
-      technologies: "HTML-CSS-REACT",
-      demo: "https://google.es/",
-      repo: "https://github.com/",
-      author: "Ivanico",
-      job: "Profe",
-      photo: "",
-      image: "",
-    },
-    {
-      name: "proyecto 3",
-      slogan: "slogan 3",
-      desc: "descripción",
-      technologies: "HTML-CSS-REACT",
-      demo: "https://google.es/",
-      repo: "https://github.com/",
-      author: "Ivanico",
-      job: "Profe",
-      photo: "",
-      image: "",
-    },
-    {
-      name: "proyecto 5",
-      slogan: "slogan 4",
-      desc: "descripción",
-      technologies: "HTML-CSS-REACT",
-      demo: "https://google.es/",
-      repo: "https://github.com/",
-      author: "Ivanico",
-      job: "Profe",
-      photo: "",
-      image: "",
-    },
-  ]); */
+  res.json(response);
 });
 
-server.post("/api/projects", (req, res) => {
+server.post("/api/projects", async (req, res) => {
+  const conn = await getConnection();
+
+  const [resultsInsertProject] = await conn.execute(
+    `INSERT INTO molones.data_project (name,slogan,technologies,repo,demo,\`desc\`,photo)
+      VALUES
+        ( ? , ?, ? ,? ,? ,? ,? )`,
+    [
+      req.body.name,
+      req.body.slogan,
+      req.body.technologies,
+      req.body.repo,
+      req.body.demo,
+      req.body.desc,
+      req.body.photo,
+    ]
+  );
+
+  const projectId = resultsInsertProject.insertId;
+
+  const [resultsInsertAuthor] = await conn.execute(
+    `INSERT INTO molones.data_author (author,job,image,data_project_id)
+       VALUES
+         (?,? ,? ,? );`,
+    [req.body.author, req.body.job, req.body.image, projectId]
+  );
+
+  await conn.end();
+
   res.json({
     success: true,
-    cosas: [{}, {}],
+    /* cardURL: url, para ver el detalle `http://localhost:4000`+ proyectId */
   });
 });
 

@@ -1,14 +1,17 @@
 {
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.6.0",
+    "dotenv": "^17.0.0",
     "express": "^5.1.0",
     "mysql2": "^3.14.1"
+  },
+   "devDependencies": {
+    "nodemon": "^3.1.10"
   },
   "name": "proyecto-promo-53-module-4-team-2",
   "version": "1.0.0",
   "description": "back project ",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "",
     "start": "node src/index.js",
@@ -19,9 +22,10 @@
     "url": "git+https://github.com/Yolanda-bc/proyecto-promo-53-module-4-team-2.git"
   },
   "keywords": [
-    "react",
-    "html",
-    "scss"
+    "express",
+    "cors",
+    "mysql",
+    "api"
   ],
   "author": "teams 2",
   "license": "ISC",
