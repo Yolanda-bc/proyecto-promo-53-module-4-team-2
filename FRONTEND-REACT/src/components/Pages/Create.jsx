@@ -6,6 +6,7 @@ import Form from "../Projects/Form";
 function Create() {
   const navigate = useNavigate();
   const [data, setData] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
   const changeState = (field, value) => {
     setData((prevData) => ({
       ...prevData,
@@ -41,6 +42,7 @@ function Create() {
       data.author &&
       data.job
     ) {
+      setErrorMessage("");
       fetch("http://localhost:4000/api/projects", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -56,13 +58,11 @@ function Create() {
         })
         .catch((err) => console.error("Error en fetch:", err));
     } else {
-      alert("Debes rellenar todos los campos");
+      setErrorMessage("Debes rellenar todos los campos obligatorios");
     }
   };
   return (
     <div className="main_create">
-      {" "}
-      {/* <Hero /> */}
       <Card
         name={data?.name}
         slogan={data?.slogan}
@@ -82,6 +82,7 @@ function Create() {
         updateImage={updateImage}
         updatePhoto={updatePhoto}
       />
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 }

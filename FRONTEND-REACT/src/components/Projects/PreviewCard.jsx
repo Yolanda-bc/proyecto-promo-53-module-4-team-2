@@ -38,6 +38,7 @@ function Preview(props) {
             <a
               className="icon icon__www"
               href={props.demo || "http://localhost:5173/#"}
+              target="_blank"
               title="Haz click para ver el proyecto online"
             >
               Web link
@@ -45,6 +46,7 @@ function Preview(props) {
             <a
               className="icon icon__github"
               href={props.repo || "http://localhost:5173/#"}
+              target="_blank"
               title="Haz click para ver el código del proyecto"
             >
               GitHub link
