@@ -1,28 +1,11 @@
-import { useState, useEffect } from "react";
-import Hero from "../Layout/Hero";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Card from "../Projects/Card";
 import Form from "../Projects/Form";
 
 function Create() {
-  const [data, setData] = useState(() => {
-    const savedData = localStorage.getItem("data");
-
-    return savedData
-      ? JSON.parse(savedData)
-      : {
-          name: "",
-          slogan: "",
-          repo: "",
-          demo: "",
-          technologies: "",
-          desc: "",
-          author: "",
-          job: "",
-          photo: "",
-          image: "",
-        };
-  });
-
+  const navigate = useNavigate();
+  const [data, setData] = useState({});
   const changeState = (field, value) => {
     setData((prevData) => ({
       ...prevData,
@@ -45,36 +28,52 @@ function Create() {
     });
   };
 
-  const handleSubmit = () => {
-    fetch("https://dev.adalab.es/api/projectCard", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((dataResponse) => {
-        console.log(dataResponse);
-      });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("aaaaaaaa", data.name);
+    if (
+      data.name &&
+      data.slogan &&
+      data.repo &&
+      data.demo &&
+      data.technologies &&
+      data.desc &&
+      data.author &&
+      data.job
+    ) {
+      fetch("http://localhost:4000/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((dataResponse) => {
+          if (dataResponse.success && dataResponse.id) {
+            navigate(`/DetailPages/${dataResponse.id}`);
+          } else {
+            console.error("Respuesta no válida de la API:", dataResponse);
+          }
+        })
+        .catch((err) => console.error("Error en fetch:", err));
+    } else {
+      alert("Debes rellenar todos los campos");
+    }
   };
-  useEffect(() => {
-    console.log("Guardando en localStorage:", data);
-    localStorage.setItem("data", JSON.stringify(data));
-  }, [data]);
   return (
     <div className="main_create">
       {" "}
       {/* <Hero /> */}
       <Card
-        name={data.name}
-        slogan={data.slogan}
-        repo={data.repo}
-        demo={data.demo}
-        technologies={data.technologies}
-        desc={data.desc}
-        author={data.author}
-        job={data.job}
-        photo={data.photo}
-        image={data.image}
+        name={data?.name}
+        slogan={data?.slogan}
+        repo={data?.repo}
+        demo={data?.demo}
+        technologies={data?.technologies}
+        desc={data?.desc}
+        author={data?.author}
+        job={data?.job}
+        photo={data?.photo}
+        image={data?.image}
       />
       <Form
         data={data}

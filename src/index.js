@@ -9,7 +9,7 @@ const server = express();
 
 // Configuramos server para que funcione bien como API
 server.use(cors());
-server.use(express.json());
+server.use(express.json({ limit: "25mb" }));
 
 // Arrancamos el servidor en el puerto 4000
 const port = 4000;
@@ -82,6 +82,7 @@ server.post("/api/projects", async (req, res) => {
 
   res.json({
     success: true,
+    id: projectId,
     /* cardURL: url, para ver el detalle `http://localhost:4000`+ proyectId */
   });
 });
