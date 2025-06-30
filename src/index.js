@@ -12,7 +12,7 @@ server.use(cors());
 server.use(express.json({ limit: "25mb" }));
 
 // Arrancamos el servidor en el puerto 4000
-const port = 4000;
+const port = process.env.PORT || 4000;
 server.listen(port, () => {
   console.log(`Servidor iniciado <http://localhost:${port}>`);
 });
