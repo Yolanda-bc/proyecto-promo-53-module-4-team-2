@@ -5,7 +5,7 @@
     "express": "^5.1.0",
     "mysql2": "^3.14.1"
   },
-   "devDependencies": {
+  "devDependencies": {
     "nodemon": "^3.1.10"
   },
   "name": "proyecto-promo-53-module-4-team-2",
