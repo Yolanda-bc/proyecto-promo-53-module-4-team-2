@@ -6,10 +6,7 @@
     "mysql2": "^3.14.1"
   },
   "devDependencies": {
-<<<<<<< HEAD
-=======
     "@types/cors": "^2.8.19",
->>>>>>> 018d4498adeb542f9a1037f68a1eb36269c99d10
     "nodemon": "^3.1.10"
   },
   "name": "proyecto-promo-53-module-4-team-2",
