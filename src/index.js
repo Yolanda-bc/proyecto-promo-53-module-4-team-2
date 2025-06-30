@@ -89,12 +89,10 @@ server.post("/api/projects", async (req, res) => {
 
 // SERVIDOR DE FICHEROS ESTÁTICOS
 
-server.use(express.static(path.join(__dirname, "../FRONTEND-REACT")));
+server.use(express.static(path.join(__dirname, "../FRONTEND")));
 
 // NO ENCONTRADO
 
 server.use(/.*/, (req, res) => {
-  res
-    .status(404)
-    .sendFile(path.join(__dirname, "../FRONTEND-REACT/error404.html"));
+  res.status(404).sendFile(path.join(__dirname, "../FRONTEND/error404.html"));
 });
