@@ -83,7 +83,8 @@ server.post("/api/projects", async (req, res) => {
   res.json({
     success: true,
     id: projectId,
-    /* cardURL: url, para ver el detalle `http://localhost:4000`+ proyectId */
+    cardURL:
+      `https://proyecto-promo-53-module-4-team-2-2.onrender.com` + proyectId,
   });
 });
 
